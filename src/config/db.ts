@@ -11,6 +11,7 @@ export default async function initDB() {
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
+      image TEXT NOT NULL,
       email VARCHAR(255) NOT NULL UNIQUE CHECK (email = LOWER(email)),
       password TEXT NOT NULL CHECK (char_length(password) >= 6),
       phone VARCHAR(14) NOT NULL, 

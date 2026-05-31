@@ -3,7 +3,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import initDB from "./config/db.js";
-// import { notesRoutes } from "./modules/notes/notes.route.js";
+import { authRoutes } from "./modules/auth/auth.routes.js";
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(express.json());
 
 initDB();
 
-// app.use("/notes", notesRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.get("/", (_req, res: Response) => {
     return res.status(200).send({
