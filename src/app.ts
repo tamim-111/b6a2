@@ -2,32 +2,34 @@
 
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { initDB } from "./config/db.js";
-// import { todoRoutes } from "./modules/todo/todo.routes.js";
+import initDB from "./config/db.js";
+// import { notesRoutes } from "./modules/notes/notes.route.js";
 
 const app = express();
 
-// Middlewares
 app.use(cors({
-    origin: ["http://localhost:3000", "others-allowed-origins.com"],
+    origin: ["http://localhost:5173"],
     credentials: true,
 }));
 app.use(express.json());
 
-initDB()
+initDB();
 
+// app.use("/notes", notesRoutes);
 
-// app.use("/todos", todoRoutes)
-
-app.get("/", (_req: Request, res: Response) => {
-    res.send("Hello Express!");
+app.get("/", (_req, res: Response) => {
+    return res.status(200).send({
+        success: true,
+        message: "Server is running",
+    });
 });
 
 app.use((req: Request, res: Response) => {
-    res.status(404).send({
-        error: "Route Not Found",
-        path: req.path
-    })
-})
+    return res.status(404).send({
+        success: false,
+        message: "Route Not Found",
+        path: req.path,
+    });
+});
 
-export default app
+export default app;
