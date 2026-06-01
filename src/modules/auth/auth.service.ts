@@ -8,7 +8,7 @@ import envConfig from "../../config/env.js";
 
 export const authService = {
     async signUpUser(payload: signUpUserInput) {
-        const { name, image, email, password, phone, role = "customer" } = payload;
+        const { name, image, email, password, phone } = payload;
 
         const existingUser = await pool.query(`SELECT id FROM users WHERE email = $1`, [email])
 
@@ -19,10 +19,10 @@ export const authService = {
         const hashedPassword = await bcrypt.hash(password, 10)
 
         const result = await pool.query(`
-            INSERT INTO users (name, image, email, password, phone, role)
+            INSERT INTO users (name, image, email, password, phone)
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id, name, image, email, phone, role`,
-            [name, image, email, hashedPassword, phone, role]
+            [name, image, email, hashedPassword, phone]
         )
 
         return result.rows[0]

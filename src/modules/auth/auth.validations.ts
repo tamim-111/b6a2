@@ -8,7 +8,6 @@ export const signUpSchema = z.object({
     email: z.email("Invalid Email").transform((val) => val.toLowerCase()),
     password: z.string().min(6, "Password must be at least 6 characters"),
     phone: z.string().max(14, "Phone number is to long"),
-    role: z.enum(["admin", "customer"]).optional().default("customer")
 });
 
 export const signInSchema = z.object({

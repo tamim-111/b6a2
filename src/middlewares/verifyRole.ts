@@ -1,3 +1,5 @@
+// src/middlewares/verifyRole.ts
+
 import { Request, Response, NextFunction } from "express";
 
 export const verifyRole = (...roles: string[]) => {

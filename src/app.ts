@@ -2,8 +2,10 @@
 
 import express, { Request, Response } from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import initDB from "./config/db.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
+
 
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(cors({
     credentials: true,
 }));
 app.use(express.json());
+app.use(cookieParser());
 
 initDB();
 

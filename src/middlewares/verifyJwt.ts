@@ -1,3 +1,5 @@
+// src/middlewares/verifyJwt.ts
+
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { pool } from "../config/db.js";
@@ -5,7 +7,6 @@ import envConfig from "../config/env.js";
 
 type JwtPayload = {
     id: number;
-    role: string;
 };
 
 export const verifyJwt = async (req: Request, res: Response, next: NextFunction) => {
