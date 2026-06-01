@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import initDB from "./config/db.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
 import { usersRoutes } from "./modules/users/users.routes.js";
+import { vehiclesRoutes } from "./modules/vehicles/vehicles.routs.js";
 
 
 const app = express();
@@ -21,6 +22,7 @@ initDB();
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", usersRoutes);
+app.use("/api/v1/vehicles", vehiclesRoutes);
 
 app.get("/", (_req, res: Response) => {
     return res.status(200).send({
