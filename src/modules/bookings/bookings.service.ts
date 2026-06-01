@@ -12,7 +12,7 @@ export const vehiclesService = {
             throw new Error("Vehicle_not_found");
         }
 
-        if (vehicle.rows[0].status !== "available") {
+        if (vehicle.rows[0].availability_status !== "available") {
             throw new Error("Vehicle_not_available");
         }
 
@@ -33,7 +33,7 @@ export const vehiclesService = {
         }
 
         // Update vehicle status to "booked"
-        await pool.query("UPDATE vehicles SET status = 'booked' WHERE id = $1", [vehicle_id]);
+        await pool.query("UPDATE vehicles SET availability_status = 'booked' WHERE id = $1", [vehicle_id]);
 
         return result.rows[0];
     },
