@@ -34,8 +34,8 @@ export default async function initDB() {
       id SERIAL PRIMARY KEY,
       customer_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
       vehicle_id INT NOT NULL REFERENCES vehicles(id) ON DELETE CASCADE,
-      rent_start_date TIMESTAMP NOT NULL,
-      rent_end_date   TIMESTAMP NOT NULL CHECK (rent_end_date > rent_start_date),
+      rent_start_date TIMESTAMPTZ NOT NULL,
+      rent_end_date   TIMESTAMPTZ NOT NULL CHECK (rent_end_date > rent_start_date),
       total_price INT NOT NULL CHECK (total_price > 0),
       status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'cancelled', 'returned'))
       )`)
