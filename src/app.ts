@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import initDB from "./config/db.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
+import { usersRoutes } from "./modules/users/users.routes.js";
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 initDB();
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", usersRoutes);
 
 app.get("/", (_req, res: Response) => {
     return res.status(200).send({
